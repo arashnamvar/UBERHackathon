@@ -22,7 +22,7 @@ var authToken = '4767a1a13814d3e80b13773824e79f44';
 var client = require('twilio')(accountSid, authToken);
  
 client.messages.create({
-    body: "Jenny please?! I love you <3",
+    body: "Hi Josh",
     to: "+16502834692",
     from: "+16505420611"
 }, function(err, message) {
