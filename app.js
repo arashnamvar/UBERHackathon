@@ -14,7 +14,7 @@ app.set('view engine','ejs');
 
 app.get('/results',function(request,response){
     var data = [
-    {name: "Hello"}
+    {address: POST.Message,from_data: POST.From}
     ];
     response.render('results',{data_array: data});
 });
