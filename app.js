@@ -25,8 +25,9 @@ client.messages.create({
 });
 
 
-app.post('/processtext', function(req,res) {
-    if (req.method == 'POST') {
+app.get('/processtext', function(req,res) {
+    console.log(req.method);
+    if (req.method == 'GET') {
         var body = '';
 
         req.on('data', function (data) {
