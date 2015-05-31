@@ -53,13 +53,13 @@ var client = require('twilio')(accountSid, authToken);
 
 var users = [];
  
-client.messages.create({
-    body: "Send me a response, prease",
-    to: "+14083869581",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+// client.messages.create({
+//     body: "Send me a response, prease",
+//     to: "+14083869581",
+//     from: "+16505420611"
+// }, function(err, message) {
+//     process.stdout.write(message.sid);
+// });
 
 // client.messages.create({
 //     body: "Send me a response, prease",
@@ -117,117 +117,28 @@ client.messages.create({
 // });
 
 app.post('/processtext', function(req,res) {
-    if (req.method == 'POST') {
-        var body = '';
-
-        req.on('data', function (data) {
-            body += data;
-        });
-
-        req.on('end', function () {
-
-          // console.log(body);
-            var POST = qs.parse(body);
-            console.log(POST);
-
-            //validate incoming request is from twilio using your auth token and the header from Twilio
-            var token = '4767a1a13814d3e80b13773824e79f44',
-                header = req.headers['x-twilio-signature'];
-
-            //validateRequest returns true if the request originated from Twilio
-            if (twilio.validateRequest(token, header, 'https://uberforall.herokuapp.com/', POST)) {
-                //generate a TwiML response
-                var resp = new twilio.TwimlResponse();
-                resp.say('hello, twilio!');
-
-                res.writeHead(200, { 'Content-Type':'text/xml' });
-                res.end(resp.toString());
-            }
-            else {
-                res.writeHead(403, { 'Content-Type':'text/plain' });
-                res.end('you are not twilio - take a hike.');
-            }
-        });
-    }
-    else {
-        res.writeHead(404, { 'Content-Type':'text/plain' });
-        res.end('send a POST');
-    }
-  });
-
-  
-
-// app.post('/processtext', function(req,res) {
-//     console.log("hello");    
-//     var body = '';
-
-//     req.on('data', function (data) {
-//         body += data;
-//         console.log(body);
-//     });
-
-//     // req.on('end', function () {
-//     //     //console.log(body);
-//     //     var POST = qs.parse(body);
-//     //     console.log(POST);
-//     //     if (req.method == 'POST') {
-//     //         var txt_address = POST.Body;
-//     //         console.log(txt_address, "THE MESSAGE");
-//     //         var user_address = txt_address.split(':');
-//     //         var start_point = user_address[0];
-//     //         console.log(start_point, "START");
-//     //         var end_point = user_address[1];
-//     //         var trip = [];
-//     //         geocoder.geocode(start_point, function(err, res){
-//     //             if(err){
-//     //                 console.log(err);
-//     //             }
-//     //             else{
-//     //                 trip.push({ lat: res[0].latitude, long: res[0].longitude });
-//     //             }
-//     //         });
-//     //         geocoder.geocode(end_point, function(err, res){
-//     //             if(err){
-//     //                 console.log(err);
-//     //             }
-//     //             else{
-//     //                 trip.push({ lat: res[0].latitude, long: res[0].longitude });
-//     //             }
-//     //         });
-
-//     //         client.messages.create({
-//     //             body: "Lat: " + trip[0].lat,
-//     //             to: "+14083869581",
-//     //             from: "+16505420611"
-//     //         }, function(err, message) {
-//     //             process.stdout.write(message.sid);
-//     //         });
-
-
-//     //         //validate incoming request is from twilio using your auth token and the header from Twilio
-//     //         var token = '4767a1a13814d3e80b13773824e79f44',
-//     //             header = req.headers['x-twilio-signature'];
-
-//     //         //validateRequest returns true if the request originated from Twilio
-//     //         if (twilio.validateRequest(token, header, 'https://uberforall.herokuapp.com/', POST)) {
-//     //             //generate a TwiML response
-//     //             var resp = new twilio.TwimlResponse();
-//     //             resp.say('hello, twilio!');
-
-//     //             res.writeHead(200, { 'Content-Type':'text/xml' });
-//     //             res.end(resp.toString());
-//     //         }
-//     //         else {
-//     //             res.writeHead(403, { 'Content-Type':'text/plain' });
-//     //             res.end('you are not twilio - take a hike.');
-//     //         }
-//     //     }
-//     //     else {
-//     //         res.writeHead(404, { 'Content-Type':'text/plain' });
-//     //         res.end('send a POST');
-//     //     }
-//     // });
-// });
+    var inputText = req.body.info;
+    var splitText = req.body.info.split(":");
+    console.log(splitText);
+    var trip = [];
+    geocoder.geocode(splitText[0], function(err, res){
+        if(err){
+            console.log(err);
+        }
+        else{
+            trip.push({ lat: res[0].latitude, long: res[0].longitude });
+        }
+    });
+    geocoder.geocode(splitText[1], function(err, res){
+        if(err){
+            console.log(err);
+        }
+        else{
+            trip.push({ lat: res[0].latitude, long: res[0].longitude });
+        }
+    });
+    console.log(trip);
+});
 
 passport.serializeUser(function (user, done){
     done(null, user);
