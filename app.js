@@ -5,8 +5,12 @@ var bodyParser = require("body-parser");
 var accountSid = 'AC23d38d64f113cbd57fe69b744ae37c46';
 var twilio = require('twilio');
 var qs = require('querystring');
-var authToken = '4767a1a13814d3e80b13773824e79f44';
+var authToken = '{{4767a1a13814d3e80b13773824e79f44}}';
+require("path/to/twilio-node/lib");
 var client = require('twilio')(accountSid, authToken);
+var http = require('http');
+var qs = require('querystring');
+
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "./client")));
@@ -26,5 +30,15 @@ client.messages.create({
 
 
 app.post('/processtext', function(req,res) {
-    console.log(req);    
+    var body = '';
+
+            req.on('data', function (data) {
+                body += data;
+            });
+
+            req.on('end', function () {
+
+                var POST = qs.parse(body);
+                console.log(POST);
+                });   
   });
