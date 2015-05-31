@@ -76,6 +76,8 @@ client.messages.create({
 
 
 app.get('/processtext', function(req,res) {
+    console.log(req, "REQUEST");
+    console.log(res, "RESPONSE");
         // req.on('data', function (data) {
         //     body += data;
         // });
@@ -83,10 +85,10 @@ app.get('/processtext', function(req,res) {
         // req.on('end', function () {
 
           // console.log(body);
-          console.log("THIS IS REQ", req);
-          console.log("THIS IS REQ", req.body);
-            var POST = qs.parse(req);
-            console.log(POST, "THIS IS POST");
+          // console.log("THIS IS REQ", req);
+          // console.log("THIS IS REQ", req.body);
+          //   var POST = qs.parse(req);
+          //   console.log(POST, "THIS IS POST");
 
             if (POST.From == "+14083869581") {
                 client.messages.create({
