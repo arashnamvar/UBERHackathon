@@ -12,12 +12,7 @@ app.use(express.static(path.join(__dirname, "./client")));
 app.set('views',__dirname + '/views');
 app.set('view engine','ejs');
 
-app.get('/results',function(request,response){
-    var data = [
-    {address: POST.Message,from_data: POST.From}
-    ];
-    response.render('results',{data_array: data});
-});
+
 
 
 
@@ -111,15 +106,15 @@ app.post('/processtext', function(req,res) {
             //     });
             // }
 
-            if (POST.From == "+12177214157") {
-                client.messages.create({
-                    body: POST.From + POST.Body,
-                    to: "+12177214157",
-                    from: "+16505420611"
-                }, function(err, message) {
-                    process.stdout.write(message.sid);
-                });
-            }
+            // if (POST.From == "+12177214157") {
+            //     client.messages.create({
+            //         body: POST.From + POST.Body,
+            //         to: "+12177214157",
+            //         from: "+16505420611"
+            //     }, function(err, message) {
+            //         process.stdout.write(message.sid);
+            //     });
+            // }
 
             // if (POST.From == "+19142635538") {
             //     client.messages.create({
@@ -158,6 +153,15 @@ app.post('/processtext', function(req,res) {
             //     res.writeHead(403, { 'Content-Type':'text/plain' });
             //     res.end('you are not twilio - take a hike.');
             // }
+
+            app.get('/results',function(request,response){
+            var data = [
+                    {address: POST.Message,from_data: POST.From}
+                    ];
+                response.render('results',{data_array: data});
+            });
+
+
         });
     }
     else {
