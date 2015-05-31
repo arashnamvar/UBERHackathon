@@ -75,22 +75,8 @@ client.messages.create({
 //   });
 
 
-app.get('/processtext', function(req,res) {
-    // console.log(req, "REQUEST");
-    console.log(res.href, "RESPONSE href");
-    console.log(res.body, "RESPONSE body");
-    console.log(res.path, "RESPONSE path");
-        // req.on('data', function (data) {
-        //     body += data;
-        // });
-
-        // req.on('end', function () {
-
-          // console.log(body);
-          // console.log("THIS IS REQ", req);
-          // console.log("THIS IS REQ", req.body);
-          //   var POST = qs.parse(req);
-          //   console.log(POST, "THIS IS POST");
+app.post('/processtext', function(req,res) {
+        console.log(req.From);
 
             if (POST.From == "+14083869581") {
                 client.messages.create({
