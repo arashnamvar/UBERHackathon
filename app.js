@@ -8,10 +8,14 @@ var twilio = require('twilio');
 var qs = require('querystring');
 
 app.use(express.static(path.join(__dirname, "./client")));
+app.set("views", path.join(__dirname, "./views"));
+app.set("view engine", "ejs");
 
 var server = app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
+
+
 
 var accountSid = 'AC23d38d64f113cbd57fe69b744ae37c46';
 var authToken = '4767a1a13814d3e80b13773824e79f44';
@@ -71,6 +75,7 @@ app.post('/processtext', function(req,res) {
             var POST = qs.parse(body);
             console.log(POST);
 
+
             if (POST.From == "+14083869581") {
                 client.messages.create({
                     body: POST.From + POST.Body,
@@ -121,7 +126,7 @@ app.post('/processtext', function(req,res) {
                 });
             }
 
-
+            res.render('index', {lol : POST});
 
             //validate incoming request is from twilio using your auth token and the header from Twilio
             // var token = '4767a1a13814d3e80b13773824e79f44',
