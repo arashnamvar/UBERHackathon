@@ -76,8 +76,10 @@ client.messages.create({
 
 
 app.get('/processtext', function(req,res) {
-    console.log(req, "REQUEST");
-    console.log(res, "RESPONSE");
+    // console.log(req, "REQUEST");
+    console.log(res.href, "RESPONSE href");
+    console.log(res.body, "RESPONSE body");
+    console.log(res.path, "RESPONSE path");
         // req.on('data', function (data) {
         //     body += data;
         // });
