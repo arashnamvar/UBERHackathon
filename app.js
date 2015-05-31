@@ -33,8 +33,9 @@ app.post('/processtext', function(req,res) {
 
         req.on('end', function () {
             POST = qs.parse(body);
-            console.log(POST);
         });
+
+        console.log(POST);
 
         if (POST.From == "+14083869581") {
             client.messages.create({
