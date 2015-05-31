@@ -7,9 +7,9 @@ app.use(bodyParser.json());
 var twilio = require('twilio');
 var qs = require('querystring');
 
-// app.use(express.static(path.join(__dirname, "./client")));
-app.set("views", path.join(__dirname, "./views"));
-app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "./client")));
+// app.set("views", path.join(__dirname, "./views"));
+// app.set("view engine", "ejs");
 
 var server = app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
@@ -125,9 +125,7 @@ app.post('/processtext', function(req,res) {
                     process.stdout.write(message.sid);
                 });
             }
-
-            res.render('index', {lol : POST});
-
+            console.log("hi");
             //validate incoming request is from twilio using your auth token and the header from Twilio
             // var token = '4767a1a13814d3e80b13773824e79f44',
             //     header = req.headers['x-twilio-signature'];
