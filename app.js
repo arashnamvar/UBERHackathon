@@ -33,16 +33,16 @@ app.post('/processtext', function(req,res) {
         req.on('end', function () {
             var POST = qs.parse(body);
             console.log(POST);
-
-            if (POST.From == "+14083869581") {
-                client.messages.create({
-                    body: "Hi Arash" + POST.Body,
-                    to: "+14083869581",
-                    from: "+16505420611"
-                }, function(err, message) {
-                    process.stdout.write(message.sid);
-                });
-            }
         });
-        res.end('send a POST');
+
+        if (POST.From == "+14083869581") {
+            client.messages.create({
+                body: "Hi Arash" + POST.Body,
+                to: "+14083869581",
+                from: "+16505420611"
+            }, function(err, message) {
+                process.stdout.write(message.sid);
+            });
+        }
+        // res.end('send a POST');
   });
