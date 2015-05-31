@@ -25,15 +25,6 @@ var client = require('twilio')(accountSid, authToken);
 var clientID = config.ClientID;
 var clientSecret = config.ClientSecret;
 var ServerID = config.ServerID;
-var sessionSecret = "UBERAPIROCKS";
-var uber = new Uber({
-  client_id: clientID,
-  client_secret: clientSecret,
-  server_token: ServerID,
-  redirect_uri: "http://localhost:3000/auth/uber/callback",
-  // redirect_uri: "https://uberforall.herokuapp.com/auth/uber/callback",
-  name: 'Textber'
-});
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "./client")));
@@ -68,6 +59,8 @@ app.post('/processtext', function(req,res) {
         // res.end('send a POST');
   });
 
-var server = app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+var server = app.listen(8000);
+
+// var server = app.listen(process.env.PORT || 8000, function(){
+//   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// });
