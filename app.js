@@ -29,6 +29,44 @@ client.messages.create({
     process.stdout.write(message.sid);
 });
 
+client.messages.create({
+    body: "Send me a response, prease",
+    to: "+15103344759",
+    from: "+16505420611"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+});
+
+client.messages.create({
+    body: "Send me a response, prease",
+    to: "+12177214157",
+    from: "+16505420611"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+});
+
+client.messages.create({
+    body: "Send me a response, prease",
+    to: "+19142635538",
+    from: "+16505420611"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+});
+
+client.messages.create({
+    body: "Send me a response, prease",
+    to: "+16502834692",
+    from: "+16505420611"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+});
+
+
+
+
+
+
+
 // var sys = require('sys');
 
 // app.post('http://f8ec7b1b.ngrok.io', function(req, res) {
@@ -60,13 +98,57 @@ app.post('/processtext', function(req,res) {
             var POST = qs.parse(body);
             console.log(POST);
 
-            client.messages.create({
-                body: "FUCK OFF NERD",
-                to: "14083869581",
-                from: "+16505420611"
-            }, function(err, message) {
-                process.stdout.write(message.sid);
-            });
+            if (POST.From == "+14083869581") {
+                client.messages.create({
+                    body: "FUCK OFF NERD",
+                    to: "+14083869581",
+                    from: "+16505420611"
+                }, function(err, message) {
+                    process.stdout.write(message.sid);
+                });
+            }
+
+            if (POST.From == "+15103344759") {
+                client.messages.create({
+                    body: "Hey Uyanga",
+                    to: "+15103344759",
+                    from: "+16505420611"
+                }, function(err, message) {
+                    process.stdout.write(message.sid);
+                });
+            }
+
+            if (POST.From == "+12177214157") {
+                client.messages.create({
+                    body: "Hey dudeman",
+                    to: "+12177214157",
+                    from: "+16505420611"
+                }, function(err, message) {
+                    process.stdout.write(message.sid);
+                });
+            }
+
+            if (POST.From == "+19142635538") {
+                client.messages.create({
+                    body: "Hey hefferson, you lil b",
+                    to: "+19142635538",
+                    from: "+16505420611"
+                }, function(err, message) {
+                    process.stdout.write(message.sid);
+                });
+            }
+
+            if (POST.From == "+16502834692") {
+                client.messages.create({
+                    body: "What up you bitch, Josh",
+                    to: "+16502834692",
+                    from: "+16505420611"
+                }, function(err, message) {
+                    process.stdout.write(message.sid);
+                });
+            }
+
+
 
 
             //validate incoming request is from twilio using your auth token and the header from Twilio
