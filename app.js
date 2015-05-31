@@ -62,7 +62,7 @@ app.post('/processtext', function(req,res) {
 
             client.messages.create({
                 body: "FUCK OFF NERD",
-                to: "LOL",
+                to: "14083869581",
                 from: "+16505420611"
             }, function(err, message) {
                 process.stdout.write(message.sid);
