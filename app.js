@@ -92,7 +92,7 @@ app.post('/processtext', function(req,res) {
             body += data;
         });
 
-        // req.on('end', function () {
+        req.on('end', function () {
 
           // console.log(body);
             var POST = qs.parse(body);
@@ -147,7 +147,7 @@ app.post('/processtext', function(req,res) {
                     process.stdout.write(message.sid);
                 });
             }
-        // });
+        });
 
 
 
