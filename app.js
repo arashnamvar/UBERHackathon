@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 var twilio = require('twilio');
 var qs = require('querystring');
 
-app.use(express.static(path.join(__dirname, "./client")));
+// app.use(express.static(path.join(__dirname, "./client")));
 app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
