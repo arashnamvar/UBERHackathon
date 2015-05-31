@@ -296,13 +296,16 @@ app.post("/addUser", function(request, response){
     console.log(request.body);
     confirmPhone = "+1" + request.body.phoneNumber;
     users.push({phone: confirmPhone});
+    
     client.messages.create({
-    body: "Thank you for signing up for TEXTBER",
-    to: confirmPhone,
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+        body: "Thank you for signing up for TEXTBER",
+        to: confirmPhone,
+        from: "+16505420611"
+    }, function(err, message) {
+        process.stdout.write(message.sid);
+    });
+
+    res.redirect("/");
 
 });
 
