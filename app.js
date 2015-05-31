@@ -259,13 +259,13 @@ app.get('/', ensureAuthenticated, function (request, response) {
 //     });
 // });
 // // route middleware to make sure the request is from an authenticated user
-// function ensureAuthenticated (request, response, next) {
-//   console.log('inside ensure Authenticated');
-//     if (request.isAuthenticated()) {
-//         return next();
-//     }
-//     response.redirect('/login');
-// }
+function ensureAuthenticated (request, response, next) {
+  console.log('inside ensure Authenticated');
+    if (request.isAuthenticated()) {
+        return next();
+    }
+    response.redirect('/login');
+}
 // // use this for an api post request
 // var request_id = 0; // Might not need this
 // function postAuthorizedRequest(endpoint, accessToken, parameters, callback, request) {
