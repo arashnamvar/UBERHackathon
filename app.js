@@ -80,8 +80,8 @@ client.messages.create({
 // });
 
 // });
-
-// var recievedData = false;
+var addressData = {};
+var recievedData = false;
 app.post('/processtext', function(req,res) {
     if (req.method == 'POST') {
         var body = '';
@@ -95,9 +95,10 @@ app.post('/processtext', function(req,res) {
           // console.log(body);
             var POST = qs.parse(body);
             console.log(POST);
-            var addressData = {};
             addressData.locations = POST.Body;
             addressData.phoneNumber = POST.From;
+            recievedData = true;
+            res.end();
             console.log(addressData);
 
             if (POST.From == "+14083869581") {
@@ -133,7 +134,11 @@ app.post('/processtext', function(req,res) {
         res.end('send a POST');
     }
   });
-
+function runStuff(){
+    if(recievedData){
+        console.log("WE'RE HERE");
+    }
+}
 passport.serializeUser(function (user, done){
     done(null, user);
 });
@@ -321,7 +326,7 @@ function ensureAuthenticated (request, response, next) {
 // }
 
 
-
+setInterval(runStuff(), 5000);
 
 
 
