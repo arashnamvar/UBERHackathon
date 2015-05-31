@@ -117,18 +117,15 @@ client.messages.create({
 // });
 
 app.post('/processtext', function(req,res) {
-    console.log("hello");
-
-    client.messages.create({
-    body: "Send me a response, prease",
-    to: "+14083869581",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
-
-    
+    console.log("hello");    
     if (req.method == 'POST') {
+            client.messages.create({
+            body: "AFTER POST THING",
+            to: "+14083869581",
+            from: "+16505420611"
+        }, function(err, message) {
+            process.stdout.write(message.sid);
+        });
         var body = '';
 
         req.on('data', function (data) {
