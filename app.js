@@ -305,7 +305,7 @@ app.post("/addUser", function(request, response){
         process.stdout.write(message.sid);
     });
 
-    res.redirect("/");
+    response.redirect("/");
 
 });
 
