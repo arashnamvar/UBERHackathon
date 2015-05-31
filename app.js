@@ -116,7 +116,7 @@ var users = [];
 
 // });
 
-pp.post('/processtext', function(req,res) {
+app.post('/processtext', function(req,res) {
     if (req.method == 'POST') {
         var body = '';
 
