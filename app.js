@@ -26,25 +26,23 @@ client.messages.create({
 
 app.post('/processtext', function(req,res) {
         var body = '';
-        var post;
-
         req.on('data', function (data) {
             body += data;
         });
 
-        req.on('end', function() {
-            post = qs.parse(body);
-        });
+        req.on('end', function () {
+            var POST = qs.parse(body);
+            console.log(POST);
 
-        console.log(post);
-
-
-
+            if (POST.From == "+14083869581") {
                 client.messages.create({
-                    body: "Hi Arash",
+                    body: "Hi Arash" + POST.Body,
                     to: "+14083869581",
                     from: "+16505420611"
                 }, function(err, message) {
                     process.stdout.write(message.sid);
                 });
+            }
+        });
+        res.end('send a POST');
   });
