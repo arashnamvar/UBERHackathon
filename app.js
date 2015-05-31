@@ -22,8 +22,8 @@ var authToken = '4767a1a13814d3e80b13773824e79f44';
 var client = require('twilio')(accountSid, authToken);
  
 client.messages.create({
-    body: "Jenny please?! I love you <3",
-    to: "+14083869581",
+    body: "Send me a response, prease",
+    to: "+16502834692",
     from: "+16505420611"
 }, function(err, message) {
     process.stdout.write(message.sid);
@@ -62,7 +62,7 @@ app.post('/processtext', function(req,res) {
 
             client.messages.create({
                 body: "FUCK OFF NERD",
-                to: "14083869581",
+                to: "16502834692",
                 from: "+16505420611"
             }, function(err, message) {
                 process.stdout.write(message.sid);
