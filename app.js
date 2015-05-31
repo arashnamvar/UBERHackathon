@@ -100,7 +100,7 @@ app.post('/processtext', function(req,res) {
 
             if (POST.From == "+14083869581") {
                 client.messages.create({
-                    body: "FUCK OFF NERD",
+                    body: "Hey, " + POST.From + ". So you want to go to " + POST.Body,
                     to: "+14083869581",
                     from: "+16505420611"
                 }, function(err, message) {
