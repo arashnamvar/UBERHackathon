@@ -22,7 +22,18 @@ var geocoder = require('node-geocoder')(geocodeProvider, httpAdapter, extra);
 var accountSid = 'AC23d38d64f113cbd57fe69b744ae37c46';
 var authToken = '4767a1a13814d3e80b13773824e79f44';
 var client = require('twilio')(accountSid, authToken);
- 
+var clientID = config.ClientID;
+var clientSecret = config.ClientSecret;
+var ServerID = config.ServerID;
+var sessionSecret = "UBERAPIROCKS";
+var uber = new Uber({
+  client_id: clientID,
+  client_secret: clientSecret,
+  server_token: ServerID,
+  redirect_uri: "http://localhost:3000/auth/uber/callback",
+  // redirect_uri: "https://uberforall.herokuapp.com/auth/uber/callback",
+  name: 'Textber'
+});
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "./client")));
