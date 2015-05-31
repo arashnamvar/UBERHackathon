@@ -58,6 +58,7 @@ app.post('/processtext', function(req,res) {
 
           // console.log(body);
             var POST = qs.parse(body);
+            console.log(POST);
 
             //validate incoming request is from twilio using your auth token and the header from Twilio
             var token = '4767a1a13814d3e80b13773824e79f44',
