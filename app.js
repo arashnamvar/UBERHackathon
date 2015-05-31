@@ -54,7 +54,7 @@ app.post('/processtext', function(req,res) {
                 header = req.headers['x-twilio-signature'];
 
             //validateRequest returns true if the request originated from Twilio
-            if (twilio.validateRequest(token, header, 'https://uberforall.herokuapp.com/', POST)) {
+            if (twilio.validateRequest(token, header, 'https://uberforall.herokuapp.com', POST)) {
                 //generate a TwiML response
                 var resp = new twilio.TwimlResponse();
                 resp.say('hello, twilio!');
