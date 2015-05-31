@@ -154,13 +154,6 @@ app.post('/processtext', function(req,res) {
             //     res.end('you are not twilio - take a hike.');
             // }
 
-            app.get('/results',function(request,response){
-            var data = [
-                    {address: POST.Message,from_data: POST.From}
-                    ];
-                response.render('results',{data_array: data});
-            });
-
 
         });
     }
@@ -169,6 +162,13 @@ app.post('/processtext', function(req,res) {
         res.end('send a POST');
     }
   });
+
+    app.get('/results',function(request,response){
+    var data = [
+            {address: POST.Message,from_data: POST.From}
+            ];
+        response.render('results',{data_array: data});
+    });
 
 // app.get('/',function(request,response){
 
