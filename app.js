@@ -155,8 +155,8 @@ app.post('/processtext', function(req,res) {
 
             // console.log(POST);
 
-            for (var i in users) {
-                if(POST.From == users[i].phone ){
+            // for (var i in users) {
+                // if(POST.From == users[i].phone ){
                     client.messages.create({
                         body: "lat: " + trip[0].lat +" long:" + trip[0].long,
                         to: "+14083869581",
@@ -164,8 +164,8 @@ app.post('/processtext', function(req,res) {
                     }, function(err, message) {
                         process.stdout.write(message.sid);
                     });
-                }
-            }
+                // }
+            // }
 
 
             // if (POST.From == "+14083869581") {
