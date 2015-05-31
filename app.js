@@ -61,8 +61,8 @@ app.post('/processtext', function(req,res) {
             console.log(POST);
 
             client.messages.create({
-                body: "Hey qt " + POST.body + "is the text you sent",
-                to: POST.from,
+                body: "FUCK OFF NERD",
+                to: "LOL",
                 from: "+16505420611"
             }, function(err, message) {
                 process.stdout.write(message.sid);
