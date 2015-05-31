@@ -9,6 +9,17 @@ var qs = require('querystring');
 
 app.use(express.static(path.join(__dirname, "./client")));
 
+app.set('views',__dirname + '/views');
+app.set('view engine','ejs');
+
+app.get('/data',function(request,response){
+    var data = [
+    {name: "Hello"}
+    ];
+
+    response.render('data_array',{data_array: data});
+
+});
 
 // app.set("views", path.join(__dirname, "./views"));
 // app.set("view engine", "ejs");
