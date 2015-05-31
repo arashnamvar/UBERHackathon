@@ -41,7 +41,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-car"></i>  <span class="light">TextBer</span>
+                    <i class="fa fa-car"></i>  <span class="light">TEXTBER</span>
                 </a>
             </div>
 
@@ -74,10 +74,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">TextBER</h1>
-                        <p class="intro-text">Uber for All.<br><br>Created by Arash Namvar, Jeff Benton, Uyanga Ganbaatar, Malik T, and Joshua Huang</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
+                        <h1 class="brand-heading">TEXTBER</h1>
+                        <p class="intro-text">Uber for All.<br></p>
+                        <a href="#about" class="btn page-scroll" style="border: 1px solid lightgray; font-size: 20px">How It Works</a>
+                            <!-- <i class="fa fa-angle-double-down animated"></i> -->
                         </a>
                     </div>
                 </div>
@@ -89,11 +89,12 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About TextBER</h2>
+                <h2>About TEXTBER</h2>
                 <p>A new way to request UBER rides without a smartphone or internet. All you need is a phone with text capability!</p>
-                <p>TextBER allows the user to get a fare estimate, and hail a UBER driver once the user provides a starting point and a end address….all without the use of a smartphone device. </p>
+                <p>TEXTBER allows the user to get a fare estimate, and hail a UBER driver once the user provides a starting point and a end address….all without the use of a smartphone device. </p>
                 <p></p>
             </div>
+
         </div>
     </section>
 
@@ -102,21 +103,22 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Sign Up for TextBer</h2>
-                    <p>Authenticate through the UBER website via the button below and then complete your signup by entering you phone number!</p>
-                    <a href="http://www.uber.com" class="btn btn-default btn-lg">Authenticate via UBER</a><br><br>
-                    <form>
+                    <h2>Sign Up for TEXTBER</h2>
+                    <p>Authenticate through the UBER website via the button below and then complete your signup by entering your phone number!</p>
+                    <a href="/auth/uber" class="btn btn-default btn-lg">Authenticate via UBER</a><br><br>
+                    <form action="/addUser" method="POST">
                         <label>Phone Number</label><br>
-                        <input type = "text" name = "Phone"><br><br>
-                        <input type  = "Submit" name = "FINISH SIGN UP" class="btn btn-default btn-lg">
+                        <input type= "text" placeholder="Phone Number" name="phoneNumber" style="color:black !important"/> <br><br>
+                        <input type= "submit" class="btn btn-default btn-lg" >
                     </form>
+                    <!-- <a href="/price" class="btn btn-default btn-lg">Do Something</a><br><br> -->
                 </div>
             </div>
         </div>
     </section>
 
-   <!--  <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
+   <!--  Contact Section -->
+<!--     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact Start Bootstrap</h2>
@@ -139,12 +141,12 @@
     </section> -->
 
     <!-- Map Section -->
-    <div id="map"></div>
+    <!-- <div id="map"></div> -->
 
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; 2015</p>
+            <p>Created by Arash Namvar, Jeff Benton, Uyanga Ganbaatar, Tarun Malik, and Joshua Huang &copy; 2015</p>
         </div>
     </footer>
 
@@ -158,8 +160,8 @@
     <script src="js/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
-
+<!--     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+ -->
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
 

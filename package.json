@@ -8,6 +8,11 @@
     "mongoose-validator": "^1.0.3",
     "path": "^0.11.14",
     "twilio": "*", 
-    "querystring": "*"
+    "querystring": "*",
+    "express-session": "^1.11.2",
+    "passport": "^0.2.2",
+    "passport-uber": "0.0.1",
+    "node-uber": "*", 
+    "node-geocoder" : "*"
   }
 }
