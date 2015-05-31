@@ -117,6 +117,7 @@ var users = [];
 // });
 
 app.post('/processtext', function(req,res) {
+    console.log("WAH");
     if (req.method == 'POST') {
         var body = '';
 
@@ -128,29 +129,29 @@ app.post('/processtext', function(req,res) {
 
           // console.log(body);
             var POST = qs.parse(body);
-            var txt_address = POST.Body;
-            var user_address = txt_address.split(':');
-            var start_point = user_address[0];
-            var end_point = user_address[1];
-            var trip = [];
-            geocoder.geocode(start_point, function(err, res){
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    trip.push({ lat: res[0].latitude, long: res[0].longitude });
-                }
-            });
-            geocoder.geocode(end_point, function(err, res){
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    trip.push({ lat: res[0].latitude, long: res[0].longitude });
-                }
-            });
-            console.log(trip[0]);
-            console.log(trip[1]);
+            // var txt_address = POST.Body;
+            // var user_address = txt_address.split(':');
+            // var start_point = user_address[0];
+            // var end_point = user_address[1];
+            // var trip = [];
+            // geocoder.geocode(start_point, function(err, res){
+            //     if(err){
+            //         console.log(err);
+            //     }
+            //     else{
+            //         trip.push({ lat: res[0].latitude, long: res[0].longitude });
+            //     }
+            // });
+            // geocoder.geocode(end_point, function(err, res){
+            //     if(err){
+            //         console.log(err);
+            //     }
+            //     else{
+            //         trip.push({ lat: res[0].latitude, long: res[0].longitude });
+            //     }
+            // });
+            // console.log(trip[0]);
+            // console.log(trip[1]);
 
 
             // console.log(POST);
@@ -158,67 +159,15 @@ app.post('/processtext', function(req,res) {
             // for (var i in users) {
                 // if(POST.From == users[i].phone ){
                     client.messages.create({
-                        body: "lat: " + trip[0].lat +" long:" + trip[0].long,
+                        // body: "lat: " + trip[0].lat +" long:" + trip[0].long,
+                        body: "HERY",
                         to: "+14083869581",
                         from: "+16505420611"
                     }, function(err, message) {
                         process.stdout.write(message.sid);
                     });
                 // }
-            // }
-
-
-            // if (POST.From == "+14083869581") {
-            //     client.messages.create({
-            //         body: "FUCK OFF NERD",
-            //         to: "+14083869581",
-            //         from: "+16505420611"
-            //     }, function(err, message) {
-            //         process.stdout.write(message.sid);
-            //     });
-            // }
-
-            // if (POST.From == "+15103344759") {
-            //     client.messages.create({
-            //         body: "Hey Uyanga",
-            //         to: "+15103344759",
-            //         from: "+16505420611"
-            //     }, function(err, message) {
-            //         process.stdout.write(message.sid);
-            //     });
-            // }
-
-            // if (POST.From == "+12177214157") {
-            //     client.messages.create({
-            //         body: "Hey dudeman",
-            //         to: "+12177214157",
-            //         from: "+16505420611"
-            //     }, function(err, message) {
-            //         process.stdout.write(message.sid);
-            //     });
-            // }
-
-            // if (POST.From == "+19142635538") {
-            //     client.messages.create({
-            //         body: "Hey hefferson, you lil b",
-            //         to: "+19142635538",
-            //         from: "+16505420611"
-            //     }, function(err, message) {
-            //         process.stdout.write(message.sid);
-            //     });
-            // }
-
-            // if (POST.From == "+16502834692") {
-            //     client.messages.create({
-            //         body: "What up you bitch, Josh",
-            //         to: "+16502834692",
-            //         from: "+16505420611"
-            //     }, function(err, message) {
-            //         process.stdout.write(message.sid);
-            //     });
-            // }
-
-
+            // 
 
 
             //validate incoming request is from twilio using your auth token and the header from Twilio
@@ -296,7 +245,7 @@ app.post("/addUser", function(request, response){
     console.log(request.body);
     confirmPhone = "+1" + request.body.phoneNumber;
     users.push({phone: confirmPhone});
-    
+
     client.messages.create({
         body: "Thank you for signing up for TEXTBER",
         to: confirmPhone,
