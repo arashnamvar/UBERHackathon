@@ -130,15 +130,6 @@ app.post('/processtext', function(req,res) {
             var POST = qs.parse(body);
             console.log(POST);
 
-            client.messages.create({
-                body: "FUCK OFF NERD",
-                to: "14083869581",
-                from: "+16505420611"
-            }, function(err, message) {
-                process.stdout.write(message.sid);
-            });
-
-
             //validate incoming request is from twilio using your auth token and the header from Twilio
             var token = '4767a1a13814d3e80b13773824e79f44',
                 header = req.headers['x-twilio-signature'];
