@@ -5,14 +5,29 @@ var bodyParser = require("body-parser");
 var app = express();
 var twilio = require('twilio');
 var qs = require('querystring');
-
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "./client")));
-
+var passport = require('passport');
+var uberStrategy = require('passport-uber');
+var https = require('https');
+var http = require('http');
+var config = require('./config.js');
+var Uber = require('node-uber');
+var ejs = require('ejs');
+var geocodeProvider = 'google';
+var httpAdapter = 'https';
+var extra = {
+    apiKey: "",
+    formatter: null
+};
+var geocoder = require('node-geocoder')(geocodeProvider, httpAdapter, extra);
 var accountSid = 'AC23d38d64f113cbd57fe69b744ae37c46';
 var authToken = '4767a1a13814d3e80b13773824e79f44';
 var client = require('twilio')(accountSid, authToken);
  
+
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "./client")));
+
+
 client.messages.create({
     body: "Thank you for signing up!",
     to: "+14083869581",
