@@ -1,15 +1,49 @@
 var express = require("express");
 var path = require("path");
 var app = express();
+var session = require('express-session');
 var bodyParser = require("body-parser");
+var passport = require('passport');
+var uberStrategy = require('passport-uber');
+var https = require('https');
+var http = require('http');
+var Uber = require('node-uber');
+var config = require('./config.js');
 var accountSid = 'AC23d38d64f113cbd57fe69b744ae37c46';
 var twilio = require('twilio');
 var qs = require('querystring');
 var authToken = '4767a1a13814d3e80b13773824e79f44';
 var client = require('twilio')(accountSid, authToken);
+var geocodeProvider = 'google';
+var httpAdapter = 'https';
+var extra = {
+    apiKey: "",
+    formatter: null
+};
+var geocoder = require('node-geocoder')(geocodeProvider, httpAdapter, extra);
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "./client")));
+var clientID = config.ClientID;
+var clientSecret = config.ClientSecret;
+var ServerID = config.ServerID;
+var sessionSecret = "UBERAPIROCKS";
+var uber = new Uber({
+  client_id: clientID,
+  client_secret: clientSecret,
+  server_token: ServerID,
+  redirect_uri: "http://localhost:3000/auth/uber/callback",
+  // redirect_uri: "https://uberforall.herokuapp.com/auth/uber/callback",
+  name: 'Textber'
+});
+app.use(session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.urlencoded({extended: true}));
 
 var server = app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
