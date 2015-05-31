@@ -8,6 +8,8 @@ var twilio = require('twilio');
 var qs = require('querystring');
 
 app.use(express.static(path.join(__dirname, "./client")));
+
+
 // app.set("views", path.join(__dirname, "./views"));
 // app.set("view engine", "ejs");
 
@@ -61,6 +63,8 @@ client.messages.create({
     process.stdout.write(message.sid);
 });
 
+var POST;
+
 app.post('/processtext', function(req,res) {
     if (req.method == 'POST') {
         var body = '';
@@ -72,7 +76,7 @@ app.post('/processtext', function(req,res) {
         req.on('end', function () {
 
           // console.log(body);
-            var POST = qs.parse(body);
+            POST = qs.parse(body);
             console.log(POST);
 
 
@@ -150,3 +154,12 @@ app.post('/processtext', function(req,res) {
         res.end('send a POST');
     }
   });
+
+app.get('/',function(request,response){
+
+    response.send("<h1>Hello Express</h1>");
+    console.log(POST);
+    
+});
+
+
