@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, "./client")));
 app.set('views',__dirname + '/views');
 app.set('view engine','ejs');
 
-
+var count_req = 0;
 
 
 
@@ -154,7 +154,7 @@ app.post('/processtext', function(req,res) {
             //     res.end('you are not twilio - take a hike.');
             // }
 
-
+            count_req = count_req + 1;
         });
     }
     else {
@@ -165,10 +165,12 @@ app.post('/processtext', function(req,res) {
 
     app.get('/results',function(request,response){
         console.log(POST);
+        
     var data = [
-            {address: POST.Body,from_data: POST.From}
+            {address: POST.Body,from_data: POST.From, count_req: count_req}
             ];
         response.render('results',{data_array: data});
+
     });
 
 // app.get('/',function(request,response){
