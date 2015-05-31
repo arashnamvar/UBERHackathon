@@ -118,53 +118,44 @@ client.messages.create({
 
 app.post('/processtext', function(req,res) {
     console.log("hello");    
-    if (req.method == 'POST') {
-        var txt_address = POST.Body;
-        console.log(txt_address, "THE MESSAGE");
-        var user_address = txt_address.split(':');
-        var start_point = user_address[0];
-        console.log(start_point, "START");
-        var end_point = user_address[1];
-        var trip = [];
-        geocoder.geocode(start_point, function(err, res){
-            if(err){
-                console.log(err);
-            }
-            else{
-                trip.push({ lat: res[0].latitude, long: res[0].longitude });
-            }
-        });
-        geocoder.geocode(end_point, function(err, res){
-            if(err){
-                console.log(err);
-            }
-            else{
-                trip.push({ lat: res[0].latitude, long: res[0].longitude });
-            }
-        });
+    var body = '';
 
-        client.messages.create({
-            body: "Lat: " + trip[0].lat,
-            to: "+14083869581",
-            from: "+16505420611"
-        }, function(err, message) {
-            process.stdout.write(message.sid);
-        });
-        var body = '';
+    req.on('data', function (data) {
+        body += data;
+    });
 
-        req.on('data', function (data) {
-            body += data;
-        });
-
-        req.on('end', function () {
-
-          // console.log(body);
-            var POST = qs.parse(body);
-            console.log(POST);
+    req.on('end', function () {
+        //console.log(body);
+        var POST = qs.parse(body);
+        console.log(POST);
+        if (req.method == 'POST') {
+            var txt_address = POST.Body;
+            console.log(txt_address, "THE MESSAGE");
+            var user_address = txt_address.split(':');
+            var start_point = user_address[0];
+            console.log(start_point, "START");
+            var end_point = user_address[1];
+            var trip = [];
+            geocoder.geocode(start_point, function(err, res){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    trip.push({ lat: res[0].latitude, long: res[0].longitude });
+                }
+            });
+            geocoder.geocode(end_point, function(err, res){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    trip.push({ lat: res[0].latitude, long: res[0].longitude });
+                }
+            });
 
             client.messages.create({
-                body: "FUCK OFF NERD",
-                to: "14083869581",
+                body: "Lat: " + trip[0].lat,
+                to: "+14083869581",
                 from: "+16505420611"
             }, function(err, message) {
                 process.stdout.write(message.sid);
@@ -188,13 +179,13 @@ app.post('/processtext', function(req,res) {
                 res.writeHead(403, { 'Content-Type':'text/plain' });
                 res.end('you are not twilio - take a hike.');
             }
-        });
-    }
-    else {
-        res.writeHead(404, { 'Content-Type':'text/plain' });
-        res.end('send a POST');
-    }
-  });
+        }
+        else {
+            res.writeHead(404, { 'Content-Type':'text/plain' });
+            res.end('send a POST');
+        }
+    });
+});
 
 passport.serializeUser(function (user, done){
     done(null, user);
