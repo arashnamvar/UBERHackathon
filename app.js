@@ -119,8 +119,32 @@ client.messages.create({
 app.post('/processtext', function(req,res) {
     console.log("hello");    
     if (req.method == 'POST') {
-            client.messages.create({
-            body: "AFTER POST THING",
+        var txt_address = POST.Body;
+        console.log(txt_address, "THE MESSAGE");
+        var user_address = txt_address.split(':');
+        var start_point = user_address[0];
+        console.log(start_point, "START");
+        var end_point = user_address[1];
+        var trip = [];
+        geocoder.geocode(start_point, function(err, res){
+            if(err){
+                console.log(err);
+            }
+            else{
+                trip.push({ lat: res[0].latitude, long: res[0].longitude });
+            }
+        });
+        geocoder.geocode(end_point, function(err, res){
+            if(err){
+                console.log(err);
+            }
+            else{
+                trip.push({ lat: res[0].latitude, long: res[0].longitude });
+            }
+        });
+
+        client.messages.create({
+            body: "Lat: " + trip[0].lat,
             to: "+14083869581",
             from: "+16505420611"
         }, function(err, message) {
