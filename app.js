@@ -166,7 +166,7 @@ app.post('/processtext', function(req,res) {
     app.get('/results',function(request,response){
         console.log(POST);
     var data = [
-            {address: POST.message,from_data: POST.From}
+            {address: POST.Body,from_data: POST.From}
             ];
         response.render('results',{data_array: data});
     });
