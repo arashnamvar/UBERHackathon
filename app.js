@@ -26,12 +26,13 @@ client.messages.create({
 
 app.post('/processtext', function(req,res) {
         var body = '';
+        var POST;
         req.on('data', function (data) {
             body += data;
         });
 
         req.on('end', function () {
-            var POST = qs.parse(body);
+            POST = qs.parse(body);
             console.log(POST);
         });
 
