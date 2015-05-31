@@ -36,8 +36,6 @@ app.post('/processtext', function(req,res) {
             post = qs.parse(body);
         });
 
-        req.abort();
-
         console.log(post);
 
 
