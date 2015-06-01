@@ -29,45 +29,45 @@ var accountSid = 'AC23d38d64f113cbd57fe69b744ae37c46';
 var authToken = '4767a1a13814d3e80b13773824e79f44';
 var client = require('twilio')(accountSid, authToken);
  
-client.messages.create({
-    body: "Send me a response, prease",
-    to: "+14083869581",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+// client.messages.create({
+//     body: "Send me a response, prease",
+//     to: "+14083869581",
+//     from: "+16505420611"
+// }, function(err, message) {
+//     process.stdout.write(message.sid);
+// });
 
-client.messages.create({
-    body: "Send me a response, prease",
-    to: "+15103344759",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+// client.messages.create({
+//     body: "Send me a response, prease",
+//     to: "+15103344759",
+//     from: "+16505420611"
+// }, function(err, message) {
+//     process.stdout.write(message.sid);
+// });
 
-client.messages.create({
-    body: "Send me a response, prease",
-    to: "+12177214157",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+// client.messages.create({
+//     body: "Send me a response, prease",
+//     to: "+12177214157",
+//     from: "+16505420611"
+// }, function(err, message) {
+//     process.stdout.write(message.sid);
+// });
 
-client.messages.create({
-    body: "Send me a response, prease",
-    to: "+19142635538",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+// client.messages.create({
+//     body: "Send me a response, prease",
+//     to: "+19142635538",
+//     from: "+16505420611"
+// }, function(err, message) {
+//     process.stdout.write(message.sid);
+// });
 
-client.messages.create({
-    body: "Send me a response, prease",
-    to: "+16502834692",
-    from: "+16505420611"
-}, function(err, message) {
-    process.stdout.write(message.sid);
-});
+// client.messages.create({
+//     body: "Send me a response, prease",
+//     to: "+16502834692",
+//     from: "+16505420611"
+// }, function(err, message) {
+//     process.stdout.write(message.sid);
+// });
 
 var POST;
 
@@ -106,15 +106,15 @@ app.post('/processtext', function(req,res) {
             //     });
             // }
 
-            // if (POST.From == "+12177214157") {
-            //     client.messages.create({
-            //         body: POST.From + POST.Body,
-            //         to: "+12177214157",
-            //         from: "+16505420611"
-            //     }, function(err, message) {
-            //         process.stdout.write(message.sid);
-            //     });
-            // }
+            if (POST.From == "+12177214157") {
+                client.messages.create({
+                    body: POST.From + POST.Body,
+                    to: "+12177214157",
+                    from: "+16505420611"
+                }, function(err, message) {
+                    process.stdout.write(message.sid);
+                });
+            }
 
             // if (POST.From == "+19142635538") {
             //     client.messages.create({
