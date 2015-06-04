@@ -37,39 +37,22 @@ var client = require('twilio')(accountSid, authToken);
 //     process.stdout.write(message.sid);
 // });
 
-// client.messages.create({
-//     body: "Send me a response, prease",
-//     to: "+15103344759",
-//     from: "+16505420611"
-// }, function(err, message) {
-//     process.stdout.write(message.sid);
-// });
-
-// client.messages.create({
-//     body: "Send me a response, prease",
-//     to: "+12177214157",
-//     from: "+16505420611"
-// }, function(err, message) {
-//     process.stdout.write(message.sid);
-// });
-
-// client.messages.create({
-//     body: "Send me a response, prease",
-//     to: "+19142635538",
-//     from: "+16505420611"
-// }, function(err, message) {
-//     process.stdout.write(message.sid);
-// });
-
-// client.messages.create({
-//     body: "Send me a response, prease",
-//     to: "+16502834692",
-//     from: "+16505420611"
-// }, function(err, message) {
-//     process.stdout.write(message.sid);
-// });
-
 var POST;
+app.post('/processcall', function(req,res) {
+    var body = '';
+
+    req.on('data', function (data) {
+        body += data;
+    });
+
+    req.on('end', function () {
+
+      // console.log(body);
+        POST = qs.parse(body);
+        console.log(POST);
+    });
+});
+
 
 app.post('/processtext', function(req,res) {
     if (req.method == 'POST') {
@@ -106,15 +89,15 @@ app.post('/processtext', function(req,res) {
             //     });
             // }
 
-            if (POST.From == "+12177214157") {
-                client.messages.create({
-                    body: POST.From + POST.Body,
-                    to: "+12177214157",
-                    from: "+16505420611"
-                }, function(err, message) {
-                    process.stdout.write(message.sid);
-                });
-            }
+            // if (POST.From == "+12177214157") {
+            //     client.messages.create({
+            //         body: POST.From + POST.Body,
+            //         to: "+12177214157",
+            //         from: "+16505420611"
+            //     }, function(err, message) {
+            //         process.stdout.write(message.sid);
+            //     });
+            // }
 
             // if (POST.From == "+19142635538") {
             //     client.messages.create({
@@ -126,16 +109,15 @@ app.post('/processtext', function(req,res) {
             //     });
             // }
 
-            if (POST.From == "+16502834692") {
-                client.messages.create({
-                    body: POST.From + POST.Body,
-                    to: "+16502834692",
-                    from: "+16505420611"
-                }, function(err, message) {
-                    process.stdout.write(message.sid);
-                });
-            }
-            console.log("hi");
+            // if (POST.From == "+16502834692") {
+            //     client.messages.create({
+            //         body: POST.From + POST.Body,
+            //         to: "+16502834692",
+            //         from: "+16505420611"
+            //     }, function(err, message) {
+            //         process.stdout.write(message.sid);
+            //     });
+            // }
             //validate incoming request is from twilio using your auth token and the header from Twilio
             // var token = '4767a1a13814d3e80b13773824e79f44',
             //     header = req.headers['x-twilio-signature'];
